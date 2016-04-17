@@ -11,6 +11,7 @@ const initialState = {
     longitude: null
   },
   updatedAt: null,
+  lastUpdateSubmittedAt: null,
   locationRetrievalFailed: false,
   requestPending: false,
   watchId: null
@@ -63,7 +64,7 @@ export default (state = initialState, action) => {
     case sagaConstants.LOCATION_UPDATE_SUBMITTING:
       return { ...state, requestPending: true };
     case sagaConstants.LOCATION_UPDATE_SUBMIT_SUCCESSFUL:
-      return { ...state, requestPending: false };
+      return { ...state, requestPending: false, lastUpdateSubmittedAt: action.payload };
     case sagaConstants.LOCATION_UPDATE_SUBMIT_FAILED:
       return { ...state, requestPending: false };
 

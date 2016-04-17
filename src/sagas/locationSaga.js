@@ -99,6 +99,8 @@ function* doRemoveLocationWatch(watchId) {
 
 
 export function* locationSubmitSaga() {
+  yield take(sagaConstants.APP_START);
+  yield call(delay, 5000);
   yield* takeLatest(
     [sagaConstants.LOCATION_GET_REQUEST_SUCCESSFUL,
       sagaConstants.LOCATION_WATCH_UPDATE_SUCCESSFUL, sagaConstants.APPSTATE_GOES_FRONT,
@@ -108,6 +110,8 @@ export function* locationSubmitSaga() {
 }
 
 export function* locationSubmitForceSaga() {
+  yield take(sagaConstants.APP_START);
+  yield call(delay, 5000);
   while (true) {
     const inForeground = yield select(selectors.isInForeground);
     const updatedAt = yield select(selectors.getLocationUpdatedAt);
@@ -166,7 +170,7 @@ function* doSubmitNewLocation(token, location) {
   try {
     yield put({ type: sagaConstants.LOCATION_UPDATE_SUBMITTING });
     yield call(locationApi.updateLoc, token, location);
-    yield put({ type: sagaConstants.LOCATION_UPDATE_SUBMIT_SUCCESSFUL });
+    yield put({ type: sagaConstants.LOCATION_UPDATE_SUBMIT_SUCCESSFUL, payload: new Date() });
   } catch (error) {
     yield put({ type: sagaConstants.LOCATION_UPDATE_SUBMIT_FAILED, error: error });
   }
