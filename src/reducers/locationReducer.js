@@ -58,7 +58,7 @@ export default (state = initialState, action) => {
           longitude: action.payload.longitude
         }
       };
-
+      
     case sagaConstants.LOCATION_UPDATE_SUBMIT:
       return { ...state, requestPending: false };
     case sagaConstants.LOCATION_UPDATE_SUBMITTING:
