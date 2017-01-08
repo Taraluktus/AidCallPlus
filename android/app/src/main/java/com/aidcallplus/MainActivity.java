@@ -1,4 +1,4 @@
-package com.aidcallplus;
+package de.aidcallplus.app;
 
 import com.facebook.react.ReactActivity;
 import com.oblador.vectoricons.VectorIconsPackage;
